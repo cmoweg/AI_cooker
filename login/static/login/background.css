@@ -1,0 +1,29 @@
+body {
+  width: 100%;
+}
+
+.background_image {
+  background: white url("images/berry.jpg") no-repeat;
+  height: 100%;
+  padding: 88px 643px;
+  /* opacity: 0.74;
+  -webkit-filter: blur(38px);
+  filter: blur(38px); */
+}
+/* https://docs.djangoproject.com/ko/3.1/intro/tutorial06/ */
+
+.eumsic {
+  width: 183px;
+  height: 69px;
+  margin: 0 119px 198px 46px;
+  -webkit-text-stroke: 1px #ffffff;
+  font-family: MARUBuriBeta;
+  font-size: 56px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000;
+}
