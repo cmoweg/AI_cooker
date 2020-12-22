@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'ImageUpload/today.css' %}">
+</head>
+
+<body>
+    추천 받은 음식들
+    {% for meal, price in recommendMeals %}
+        {% comment %} <p>사진: <img class="today-image-lists" src="{{ meal.photo.url }}"></p> {% endcomment %}
+        <p> {{meal}}</p>
+        {% comment %} <p>사진: <img class="today-image-lists" src="{% static 'images/{{meal}}.jpg' %}"></p> {% endcomment %}
+        {% with meal|stringformat:"s" as mealStr %}
+            <img src="{% static 'images/'|add:mealStr|add:'.jpg' %}" />
+        {% endwith %}
+    {% endfor %}
+
+    {% comment %} <button type="button" action="{% url 'uploadForm' %}" >업로드</button> {% endcomment %}
+</body>
+</html>

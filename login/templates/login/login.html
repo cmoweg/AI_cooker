@@ -17,7 +17,7 @@
   
 
     <h2>Welcome Back</h2>
-    <form>
+    <form action="{% url 'ImageUpload:todayFood' %}">
       <div class="input-cont">
         <input type="text">
         <label>Username</label>
@@ -33,9 +33,8 @@
       </span>
       <a href="#">Forgot Password</a>
       <div class="clear"></div>
-      <input type="submit" value="Sign In">   
+      <input type="submit"  value="Sign In">   
     </form>
 </div>
-  <div class="eumsic"> hi</div>
   </body>
 </html>

@@ -9,4 +9,5 @@ class FoodImage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     photo = models.ImageField(upload_to="images/")
     imageIdx = models.SmallIntegerField()
+    serving = models.FloatField()
     uploaded = models.DateTimeField(auto_now_add=True)

@@ -1,15 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'ImageUpload/today.css' %}">
 </head>
+
 <body>
-    <form method="POST" action="{% url 'upload' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="imgs">
-        <input type="submit" value="업로드">
-    </form>
+    <progress value="22" max="100"></progress>
+    오늘 먹은 것들
+    {% for meal in todayMeals %}
+        <p>사진: <img class="today-image-lists" src="{{ meal.photo.url }}"></p>
+        <p>이미지 라벨(이름화??): {{ meal.imageIdx }}</p>
+        <p>이미지 업로드 타임: {{ meal.uploaded }}</p>
+        <p>먹은 양: {{ meal.serving |floatformat:-1}}인분</p>
+    {% endfor %}
+
+    <button type="button" onclick="location.href='{% url 'ImageUpload:uploadForm' %}'">업로드</button>
 </body>
 </html>
