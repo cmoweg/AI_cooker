@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST" action="{% url 'todayFood' %}" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'upload' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="file" name="imgs">
         <input type="submit" value="업로드">
