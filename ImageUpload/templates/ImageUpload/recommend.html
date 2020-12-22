@@ -26,14 +26,19 @@
     
     <div class="container">
         <div class="row">
-            {% for meal, price in recommendMeals %}
+            {% for meal, price, nut in recommendMeals %}
             <div class="col-sm">
             <p> {{meal|return_name_haksik}}</p>
             {% with meal|stringformat:"s" as mealStr %}
                 <img class="recommendedMeal"src="{% static 'images/'|add:mealStr|add:'.jpg' %}" />
                 <p>가격:{{price}}</p>
-                <p>가격:{{price}}</p>
             {% endwith %}
+            <p>칼로리:{{nut.cal}}</p>
+            <p>나트륨:{{nut.nat}}</p>
+            <p>지방:{{nut.fat}}</p>
+            <p>단백질:{{nut.pro}}</p>
+            <p>탄수화물:{{nut.car}}</p>
+            
             </div>
             {% endfor %}
         </div>

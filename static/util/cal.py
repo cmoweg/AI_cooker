@@ -1,6 +1,17 @@
-def get_neut(idx):
+def get_nut(idx):
     import pandas
     ft = pandas.read_excel('C:/dev/AI_Cooker/static/util/food_pre.xlsx')
+    cal = ft.iloc[idx, 1]  # 칼로리 calorie
+    pro = ft.iloc[idx, 2]  # 단백질 protein
+    fat = ft.iloc[idx, 3]  # 지방 fat
+    car = ft.iloc[idx, 4]  # 탄수화물 carbohydrate
+    nat = ft.iloc[idx, 5]  # 나트륨 natrium
+    return {'cal': cal, 'pro': pro, 'fat': fat, 'car': car, 'nat': nat}
+
+
+def get_nut_haksik(idx):
+    import pandas
+    ft = pandas.read_excel('C:/dev/AI_Cooker/static/util/haksik.xlsx')
     cal = ft.iloc[idx, 1]  # 칼로리 calorie
     pro = ft.iloc[idx, 2]  # 단백질 protein
     fat = ft.iloc[idx, 3]  # 지방 fat

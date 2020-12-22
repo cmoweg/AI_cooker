@@ -1,27 +1,42 @@
 from django.shortcuts import render, redirect
 from .models import FoodImage
 
-from static.util.image_predict import image_predict
+from static.util import image_predict
 from static.util import Recommend
 import pandas
-from static.util.cal import get_neut, get_total, get_name_haksik
+from static.util.cal import *
 
 # Create your views here.
 
 
 def todayFood(request):
 
-    cal = 2435
-    protein = 82
-    fat = 54
-    car = 380
-    na = 2000
+    dayNut = {
+        'cal': 2435,
+        'pro': 82,
+        'fat': 54,
+        'car': 380,
+        'nat': 2000,
+    }
 
     import datetime
     user = request.user
     currentDay = datetime.datetime.today()
+
+    todayMeals = FoodImage.objects.filter(uploaded__date=currentDay)
+
+    eatIdxList = []
+    eatServingList = []
+
+    for data in todayMeals.values():
+        eatIdxList.append(data['imageIdx'])
+
+    nut = get_total(eatIdxList)
+
     context = {
-        'todayMeals': FoodImage.objects.filter(uploaded__date=currentDay)
+        'todayMeals': todayMeals,
+        'nut': nut,
+        'daynut': dayNut,
     }
     print(context['todayMeals'])
     return render(request, 'ImageUpload/todayFood.html', context)
@@ -35,7 +50,7 @@ def upload(request):
     # # # Ai model
 
     food.photo = request.FILES['imgs']
-    food.imageIdx = image_predict(food.photo)
+    food.imageIdx = image_predict.image_predict(food.photo)
     print(request.POST['serving'], type(request.POST['serving']))
     food.serving = request.POST['serving']
     # food.imageIdx = 0  # ->   row index
@@ -50,10 +65,10 @@ def upload(request):
 def detail(request, pk):
     food = FoodImage.objects.get(pk=pk)
 
-    neut = get_neut(food.imageIdx)
+    nut = get_nut(food.imageIdx)
     context = {
         'food': food,
-        'neut': neut
+        'nut': nut
     }
     return render(request, 'ImageUpload/FoodDetail.html', context)
 
@@ -77,9 +92,10 @@ def recommend(request):
 
     output = Recommend.recommend(eatIdxList, eatServingList)
     # label, price *3
+    output2 = [(i, _, get_nut_haksik(i)) for i, _ in output]
 
     context = {
-        'recommendMeals': output
+        'recommendMeals': output2
     }
 
     return render(request, 'ImageUpload/recommend.html', context)
