@@ -3,10 +3,19 @@ from .models import FoodImage
 
 from static.util.image_predict import image_predict
 from static.util import Recommend
+import pandas
+from static.util.cal import get_neut, get_total, get_name_haksik
+
 # Create your views here.
 
 
 def todayFood(request):
+
+    cal = 2435
+    protein = 82
+    fat = 54
+    car = 380
+    na = 2000
 
     import datetime
     user = request.user
@@ -33,14 +42,18 @@ def upload(request):
     # # #
     food.save()
     # name 속성이 imgs인 input 태그로부터 받은 파일들을 반복문을 통해 하나씩 가져온다
-    return redirect('detail', food.id)
+    return redirect('ImageUpload:detail', food.id)
     # else:
     #     return render(request, 'new.html')
 
 
 def detail(request, pk):
+    food = FoodImage.objects.get(pk=pk)
+
+    neut = get_neut(food.imageIdx)
     context = {
-        'food': FoodImage.objects.get(pk=pk)
+        'food': food,
+        'neut': neut
     }
     return render(request, 'ImageUpload/FoodDetail.html', context)
 

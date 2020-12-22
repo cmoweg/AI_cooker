@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
     오늘 먹은 것들
     {% for meal in todayMeals %}
         <p>사진: <img class="today-image-lists" src="{{ meal.photo.url }}"></p>
-        <p>이미지 라벨(이름화??): {{ meal.imageIdx }}</p>
+        <p>음식: {{ meal.imageIdx|return_name_meal}}</p>
         <p>이미지 업로드 타임: {{ meal.uploaded }}</p>
         <p>먹은 양: {{ meal.serving |floatformat:-1}}인분</p>
     {% endfor %}

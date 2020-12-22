@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +10,19 @@
     <link rel="stylesheet" type="text/css" href="{% static 'ImageUpload/uploadPhoto.css' %}">
 </head>
 <body>
+
     <span>업로더: {{ food.user.username }}</span>
     <span>사진: <img class='upload-photo' src="{{ food.photo.url }}"></span>
-    <span>이미지 라벨(이름화??): {{ food.imageIdx }}</span>
+    <span>음식: {{ food.imageIdx|return_name_meal }}</span>
     <span>이미지 업로드 타임: {{ food.uploaded }}</span>
+    <p>칼로리:{{neut.cal}}</p>
+    <p>탄수화물:{{neut.car}}</p>
+    <p>단백질:{{neut.pro}}</p>
+    <p>지방:{{neut.fat}}</p>
+    <p>나트륨:{{neut.nat}}</p>
+    
+
+    <button type="button" onclick="location.href='{% url 'ImageUpload:todayFood' %}'">홈으로</button>
+
 </body>
 </html>
