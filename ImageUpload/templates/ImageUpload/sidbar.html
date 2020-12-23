@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>메인페이지</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    {% block header %}
+    {% endblock %}
+</head>
+<style>
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #111111;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+<body>
+    <div style="width: 1920px;height: 175px;margin: 0 0 95px;padding: 52px 145px 54px 143px;background-color: #fafafa;">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+      </div>
+      <span style="font-family: MARUBuriBetaot;font-size: 34px;font-weight: normal;font-stretch: normal;font-style: normal;line-height: 2.00;letter-spacing: normal;text-align: left;cursor:pointer; color: #9c9c9c;position: fixed; left: 10%;" onclick="openNav()">&#9776; Menu </span> 
+      <a style=" font-family: MARUBuriBetaot;font-size: 56px;font-weight: normal; font-stretch: normal;font-style: normal;line-height: 1.20;letter-spacing: normal;text-align: left;cursor:pointer;color: #111111; position: fixed;  left: 47%;" > eumsic </a> 
+      <a style="font-family: MARUBuriBetaot;font-size: 34px;font-weight: normal;font-stretch: normal;font-style: normal;line-height: 2.00;letter-spacing: normal;text-align: left;cursor:pointer;color: #9c9c9c;position: fixed;  left: 83%;" > Sign in </a> 
+      <a style="font-family: MARUBuriBetaot;font-size: 34px;font-weight: normal;font-stretch: normal;font-style: normal;line-height: 2.00;letter-spacing: normal;text-align: left;cursor:pointer;color: #9c9c9c;position: fixed;  left: 90%;" > log in </a> 
+    </div>  
+    {% block content %}
+    {% endblock %}
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "350px";
+
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+
+}
+</script>       
+</body>
+
+</html>
